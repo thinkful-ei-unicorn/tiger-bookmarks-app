@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+import 'normalize.css';
 import './index.css';
 
 import bookmarksList from './bookmarks-list';
