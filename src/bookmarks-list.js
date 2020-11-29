@@ -112,13 +112,13 @@ const render = function () {
       </header>
       <ul class="bookmark-list js-bookmark-list"></ul>
       </div
-    `
-    $('.main-view').html(html)
+    `;
+    $('.main-view').html(html);
     $('.js-bookmark-list').html(bookmarkListItemsString);
   } else {
-    $('.my-bookmarks-view').empty()
+    $('.my-bookmarks-view').empty();
   }
-}
+};
 
 $fn.extend({
   serializeJson: function () {
@@ -127,30 +127,30 @@ $fn.extend({
     formData.forEach((val, name) => o[name] = val);
     return JSON.stringify(o);
   }
-})
+});
 
 const handleNewItemSubmit = function () {
   $('.main-view').on('submit', '#js-new-bookmark-form', event => {
     event.preventDefault();
     const bookmark = $(event.target).serializeJson();
     api.createItem(bookmark)
-    .then((bookmark) => {
-      store.addItem(bookmark);
-      store.adding = false;
-      store.filter = 0;
-      addNewForm();
-      render();
-    })
-    .catch((error) => {
-      store.setError(error.message);
-      renderError();
-    })
-  })
-}
+      .then((bookmark) => {
+        store.addItem(bookmark);
+        store.adding = false;
+        store.filter = 0;
+        addNewForm();
+        render();
+      })
+      .catch((error) => {
+        store.setError(error.message);
+        renderError();
+      });
+  });
+};
 
 const getItemIdFromElement = function (item) {
   return $(item).closest('.js-item-element').data('item-id');
-}
+};
 
 const handleDeleteItemClicked = function () {
   return $('.main-view').on('click', '.js-item-delete', event => {
@@ -158,15 +158,15 @@ const handleDeleteItemClicked = function () {
     const id = getItemIdFromElement(event.currentTarget);
     //delete the item
     api.deleteItem(id)
-    .then(() => {
-      store.findAndDelete(id);
-      //render the updated bookmark list
-      render();
-    })
-    .catch((error) => {
-      store.setError(error.message);
-      renderError();
-    })
+      .then(() => {
+        store.findAndDelete(id);
+        //render the updated bookmark list
+        render();
+      })
+      .catch((error) => {
+        store.setError(error.message);
+        renderError();
+      });
   });
 };
 
@@ -176,42 +176,42 @@ const handleEditBookmarkItemSubmit = function () {
     const id = getItemIdFromElement(event.currentTarget);
     const itemName = $(event.currentTarget).find('.bookmark-item').val();
     api.updateItem(id, {title:itemName})
-    .then((newItem) => {
-      store.findAndUpdate(id, {title:itemName});
-      store.filter = 0;
-      render();
-    })
-    .catch((error) => {
-      console.log(error);
-      store.setError(error.message);
-      renderError();
-    })
-  })
-}
+      .then((newItem) => {
+        store.findAndUpdate(id, {title:itemName});
+        store.filter = 0;
+        render();
+      })
+      .catch((error) => {
+        console.log(error);
+        store.setError(error.message);
+        renderError();
+      });
+  });
+};
 
 const handleItemExpandClicked = function () {
   $('.main-view').on('click', '.bookmark-item__expanded', event => {
     const id = getItemIdFromElement(event.currentTarget);
     const item = store.findById(id);
-    item.expanded = !item.expanded
+    item.expanded = !item.expanded;
     render();
-  })
-}
+  });
+};
 
 const handleCloseClicked = function () {
   $('.main-view').on('click', 'js-item-toggle', event => {
     const id = getItemIdFromElement(event.currentTarget);
     const item = store.findById(id);
-    item.expanded = !item.expanded
+    item.expanded = !item.expanded;
     render();
-  })
-}
+  });
+};
 
 const handleFilterClick = function () {
   let filterValue = $('#ratings option:selected').val();
   store.filter = filterValue;
   render();
-}
+};
 
 const handleNewCancel = function () {
   $('.main-view').on('click', '.cancel', event => {
@@ -219,8 +219,8 @@ const handleNewCancel = function () {
     store.adding = false;
     addNewForm();
     render();
-  })
-}
+  });
+};
 
 const handleNewSubmit = function () {
   $('.main-view').on('click', '.initial-view-new', event => {
@@ -228,8 +228,8 @@ const handleNewSubmit = function () {
     console.log('clicked-new');
     store.adding = true;
     addNewForm();
-  })
-}
+  });
+};
 
 const addNewForm = function () {
   if (store.adding) {
@@ -271,14 +271,14 @@ const addNewForm = function () {
       <button class="create" type="submit">Create</button>
       <button class="cancel" type="reset">Cancel</button>
     </form>
-    `
+    `;
 
-    $('.new-bookmark-form').html(newForm)
+    $('.new-bookmark-form').html(newForm);
   } else {
-    $('.new-bookmark-form').empty()
+    $('.new-bookmark-form').empty();
   }
   render();
-}
+};
 
 const bindEventListeners = () => {
   handleNewItemSubmit();
