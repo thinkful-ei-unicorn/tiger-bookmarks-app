@@ -1,5 +1,5 @@
-import store from './store'
-import api from './api'
+import store from './store';
+import api from './api';
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
@@ -60,7 +60,7 @@ function generateAddBookmarkPage() {
   <ul class="js-boomark-list">
   </ul>
   </div>
-  `
+  `;
 }
 
 
@@ -73,27 +73,27 @@ function generateAddBookmarkPage() {
 
 function handleAddItemClicked() {
   //this function will be responsible for when a user wants to add a new bookmark item
-$('main').on('submit', '#js-main-controls', function(event) {
-  event.preventDefault();
-  store.adding = true;
-  render();
-})
+  $('main').on('submit', '#js-main-controls', function(event) {
+    event.preventDefault();
+    store.adding = true;
+    render();
+  });
 }
 
 function handleCancelClicked() {
   $('main').on('click', '#js-cancel-button', function(event) {
-    console.log('Handling cancel...')
-    //store.adding = false;
-  })
+    console.log('Handling cancel...');
+    store.adding = false;
+  });
 }
 
 
 
 function handleCreateClicked() {
   $('main').on('click', '#js-submit-button', function(event) {
-    console.log('Handling submit...')
+    console.log('Handling submit...');
     api.createBookmark($(event.target));
-  })
+  });
 }
 
 const bindEventListeners = () => {
@@ -120,4 +120,4 @@ function render() {
 export default {
   render,
   bindEventListeners
-}
+};
