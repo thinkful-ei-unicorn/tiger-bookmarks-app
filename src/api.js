@@ -1,17 +1,8 @@
-import $ from 'jquery';
+const BASE_URL = 'https://thinkful-list-api.herokuapp.com/tiger/bookmarks';
 
-const BASE_URL = 'https://thinkful-list-api.herokuapp.com/tiger';
 
-/**
- * listApiFetch - Wrapper function for native `fetch` to standardize error handling. 
- * @param {string} url 
- * @param {object} options 
- * @returns {Promise} - resolve on all 2xx responses with JSON body
- *                    - reject on non-2xx and non-JSON response with 
- *                      Object { code: Number, message: String }
- */
 const listApiFetch = function (...args) {
-  // setup var in scope outside of promise chain
+  //setup var scope outside of promise chain
   let error;
   return fetch(...args)
     .then(res => {
@@ -45,50 +36,41 @@ const listApiFetch = function (...args) {
     });
 };
 
-const getBookmarks = function () {
-  return listApiFetch(`${BASE_URL}/bookmarks`);
+const getItems = function () {
+  return listApiFetch(`${BASE_URL}`);
 };
 
-$.fn.extend({
-  serializeJson: function() {
-    const formData = new FormData(this[0]);
-    const o = {};
-    formData.forEach((val, name) => o[name] = val);
-    return JSON.stringify(o);
-  }
-});
 
-const createBookmark = function (form) {
-  const newBookmark = form.serializeJson();
-  return listApiFetch(`${BASE_URL}/bookmarks`, {
+function createItem(bookmark) {
+  return listApiFetch(`${BASE_URL}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: newBookmark
+    body: bookmark
   });
-};
+}
 
-const updateBookmark = function (id, updateData) {
-  const newData = JSON.stringify(updateData);
-  return listApiFetch(`${BASE_URL}/bookmarks/${id}`, {
+function updateItem (id, updateDataArg) {
+  const updateData = JSON.stringify(updateDataArg);
+  return listApiFetch(`${BASE_URL}/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: newData
+    body: updateData
   });
-};
+}
 
-const deleteBookmark = function (id) {
-  return listApiFetch(BASE_URL + '/bookmarks/' + id, {
+const deleteItem = function (id) {
+  return listApiFetch(`${BASE_URL}/${id}`, {
     method: 'DELETE'
   });
 };
 
 export default {
-  getBookmarks,
-  createBookmark,
-  updateBookmark,
-  deleteBookmark
+  getItems,
+  createItem,
+  updateItem,
+  deleteItem
 };
