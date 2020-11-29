@@ -4,22 +4,24 @@ let error = null;
 let filter = 0;
 
 const findById = function (id) {
-  return this.bookmarks.find(currentBookmark => currentBookmark.id === id);
+  return this.bookmarks.find(currentItem => currentItem.id === id);
 };
 
-const addItem = function (bookmark) {
-  this.bookmarks.push(bookmark);
+const addBookmark = function (item) {
+  this.bookmarks.push(item);
 };
 
 const findAndDelete = function (id) {
-  this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
+  this.bookmarks = this.bookmarks.filter(bookmarks => bookmarks.id !== id);
 };
 
-const findAndUpdate = function (id, newData) {
-  const currentBookmark = this.findById(id);
-  Object.assign(currentBookmark, newData);
+function findAndUpdate (id, newData) {
+  const updateItem = this.bookmarks.find(item => item.id===id);
+  Object.assign(updateItem, newData);
+}
+const addItem = function (item) {
+  this.bookmarks.push(item);
 };
-
 const setError = function (error) {
   this.error = error;
 };
@@ -30,8 +32,8 @@ export default {
   error,
   filter,
   findById,
-  addItem,
   findAndDelete,
   findAndUpdate,
+  addItem,
   setError
 };
