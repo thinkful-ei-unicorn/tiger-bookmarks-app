@@ -120,7 +120,7 @@ const render = function () {
   }
 };
 
-$fn.extend({
+$.fn.extend({
   serializeJson: function () {
     const formData = new FormData(this[0]);
     const o = {};
