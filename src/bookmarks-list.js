@@ -96,7 +96,7 @@ const render = function () {
       <h2>My Bookmarks</h2>
       <form id="initial-view">
         <button class="initial-view-new">
-          <span class="button-label"New</span>
+          <span class="button-label">New</span>
         </button>
         <select id="ratings" name="ratings">
           <option>
@@ -199,7 +199,7 @@ const handleItemExpandClicked = function () {
 };
 
 const handleCloseClicked = function () {
-  $('.main-view').on('click', 'js-item-toggle', event => {
+  $('.main-view').on('click', '.js-item-toggle', event => {
     const id = getItemIdFromElement(event.currentTarget);
     const item = store.findById(id);
     item.expanded = !item.expanded;
@@ -208,7 +208,7 @@ const handleCloseClicked = function () {
 };
 
 const handleFilterClick = function () {
-  let filterValue = $('#ratings option:selected').val();
+  let filterValue = $('#ratings, option:selected').val();
   store.filter = filterValue;
   render();
 };
@@ -249,22 +249,15 @@ const addNewForm = function () {
       <div class="txt-center">
         <div class="rating">
           <input id="heart5" name="rating" type="radio" value="5" class="radio-button-hide"/>
-          <label for="heart5">♡</label>
+          <label for="heart5">♡♡♡♡♡</label><br>
           <input id="heart4" name="rating" type="radio" value="4" class="radio-button-hide"/>
-          <label for="heart4">♡</label>
+          <label for="heart4">♡♡♡♡</label><br>
           <input id="heart3" name="rating" type="radio" value="3" class="radio-button-hide"/>
-          <label for="heart3">♡</label>
+          <label for="heart3">♡♡♡</label><br>
           <input id="heart2" name="rating" type="radio" value="2" class="radio-button-hide"/>
-          <label for="heart2">♡</label>
+          <label for="heart2">♡♡</label><br>
           <input id="heart1" name="rating" type="radio" value="1" class="radio-button-hide"/>
-          <label for="heart1">♡</label>
-          <div class="clear"></div>
-          <input id="heart5" name="rating" type="radio" value="5" class="heartRadio"/>
-          <input id="heart4" name="rating" type="radio" value="4" class="heartRadio"/>
-          <input id="heart3" name="rating" type="radio" value="3" class="heartRadio"/>
-          <input id="heart2" name="rating" type="radio" value="2" class="heartRadio"/>
-          <input id="heart1" name="rating" type="radio" value="1" class="heartRadio"/>
-      </div>
+          <label for="heart1">♡</label><br>
     </div>
     <input type="text" name="desc" class="bookmark-description-entry" placeholder="description">
     <br>
@@ -286,7 +279,7 @@ const bindEventListeners = () => {
   handleDeleteItemClicked();
   handleEditBookmarkItemSubmit();
   handleCloseError();
-  $('main-view').on('change', '#ratings', handleFilterClick);
+  $('.main-view').on('change', '#ratings', handleFilterClick);
   handleNewSubmit();
   handleNewCancel();
   handleCloseClicked();
