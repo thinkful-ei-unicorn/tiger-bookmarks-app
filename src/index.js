@@ -1,20 +1,22 @@
 import $ from 'jquery';
+
+import 'normalize.css';
 import './index.css';
 
-import bookmark from './bookmark';
+import bookmarksList from './bookmarks-list';
 import store from './store';
 import api from './api';
 
 
 const main = function () {
   console.log('DOM is loaded');
-  api.getBookmarks()
-    .then((bookmarks) => {
-      bookmarks.forEach((bookmark) => store.addBookmark(bookmark));
-      bookmark.render();
+  api.getItems()
+    .then((items) => {
+      items.forEach((item) => store.addItem(item));
+      bookmarksList.render();
     });
-  bookmark.bindEventListeners();
-  bookmark.render();
+  bookmarksList.bindEventListeners();
+  bookmarksList.render();
 };
 
 $(main);
