@@ -9,4 +9,4 @@ const validateTitle = function (title) {
 export default {
   validateUrl,
   validateTitle
-}
+};

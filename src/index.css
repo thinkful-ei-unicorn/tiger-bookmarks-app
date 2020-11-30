@@ -27,7 +27,7 @@ li {
 }
 
 .bookmark-item:hover {
-  cursor: url('/assets/cursor.cur'), auto;	
+  cursor: url('assets/cursor.cur'), auto;	
 }
 /*** boxes on main page where book marks appears***/
 .bookmark-box{
