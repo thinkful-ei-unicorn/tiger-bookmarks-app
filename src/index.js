@@ -1,10 +1,22 @@
 import $ from 'jquery';
 
-function main() {
-  console.log('DOM is loaded');
+import 'normalize.css';
+import './index.css';
 
-  const startMsg = $('<p>Webpack is working!</p>');
-  $('#root').append(startMsg);
-}
+import bookmarksList from './bookmarks-list';
+import store from './store';
+import api from './api';
+
+
+const main = function () {
+  console.log('DOM is loaded');
+  api.getItems()
+    .then((items) => {
+      items.forEach((item) => store.addItem(item));
+      bookmarksList.render();
+    });
+  bookmarksList.bindEventListeners();
+  bookmarksList.render();
+};
 
 $(main);
