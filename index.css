@@ -1,0 +1,164 @@
+h1 {
+  text-align: center;
+  color: navy;
+}
+
+h2 {
+  color: navy;
+}
+
+li {
+  list-style: none;
+}
+.container {
+  margin: 45px;
+  padding: 30px;
+  border: 2px solid pink;
+}
+
+.button {
+  margin: 15px 0px 15px 0px;
+  border-radius: 12px;
+}
+
+.initial-view-new {
+  border-radius: 4px;
+  padding: 0px, 2px, 0px, 2px;
+}
+
+.bookmark-item:hover {
+  cursor: url('/assets/cursor.cur'), auto;	
+}
+/*** boxes on main page where book marks appears***/
+.bookmark-box{
+
+  display: flex;
+  justify-content: space-between;
+  }
+  .rating-box>label{
+    display: inline-block;
+  }
+  .bookmark-item__expanded{
+    color: hotpink;
+  }
+  
+  #js-new-bookmark-form > input{ 
+   
+    margin-bottom: 5px;
+  }
+  .new-bookmark-form{
+    display: flex;
+  justify-content: center;
+  }
+  button, input[type="text"] {
+    padding: 5px;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  #bookmark-list-item {
+    width: 250px;
+  }
+  li{
+    margin: 5px;
+  }
+  .container {
+    margin-top: 10px;;
+    width: 100%;
+    padding: 5px auto;
+    border: 1px solid pink;
+    border-radius: 3px;
+  }
+  
+  .bookmark-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+  }
+  .bookmark-desc{
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: deeppink;
+  }
+  .bookmark-list > li {
+    margin: 0 30px 20px 30px;
+    
+    border: 1px solid lightpink;
+    padding: 20px;
+    border-radius: 3px;;
+  }
+  
+  .bookmark-item {
+    display: block;
+    
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  
+  .error-container {
+    position: absolute;
+    color: palevioletred;
+    font-weight: bold;
+    border: 1px solid plum;
+    background-color: lightblue;
+  }
+  
+  
+  
+  .error-container * {
+    display: inline-block;
+  }
+  
+  #cancel-error {
+    margin-right: 0.5rem;
+  }
+  input:disabled{
+    background: none;
+    border:none;
+    width: 100%;
+  }
+/***--links--****/
+a:link {
+  color: hotpink;
+}
+a:visited{
+  color: blue;
+}
+a:hover {
+  color:indigo;
+}
+a:active{
+  color: slateblue;
+}
+
+@media all and (min-width: 600px){
+  body {
+    font-size: 1em;
+  }
+header{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+h2{
+  align-self: flex-start;
+}
+header > form {
+  align-self: flex-end;
+  justify-content: flex-end;
+}
+
+}
